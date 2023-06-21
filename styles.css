@@ -112,9 +112,9 @@ section {
 
 .input__wrapper {
   margin-top: 12px;
-  position: relative;
   width: 50%;
   height: 55%;
+  position: relative;
 }
 
 .fa-solid,
@@ -128,7 +128,8 @@ section {
   top: 0;
   bottom: 0;
   color: black;
-  background-color: black;
+  width: 20px;
+  height: 20px;
   font-size: 24px;
   margin: 10px 20px;
   cursor: pointer;
