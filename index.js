@@ -9,8 +9,6 @@ moviesWrapper.classList += ' movies__loading'
 // }
 // moviesWrapper.classList.remove('movies__loading')
 
-searchButton.disabled = true;
-  searchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
 
 async function renderMovies(filter) {
     event.preventDefault();
@@ -18,6 +16,7 @@ async function renderMovies(filter) {
     const searchInput = document.querySelector('#searchInput');
     const query = searchInput.value;
     moviesWrapper.classList.add('movies__loading');
+    searchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
     const movies = await fetch(`http://www.omdbapi.com/?apikey=1f280777&s=${query}`)
     const moviesData = await movies.json();
     const moviesArray = moviesData.Search;
@@ -27,14 +26,10 @@ async function renderMovies(filter) {
       } else if (filter === "OLD_TO_NEW") {
          moviesArray.sort((a, b) => (a.Year) - (b.Year));
       }
-      else if (filter === "ALPHABETICALLY") {
-        moviesArray.sort((a, b) => (a.Title < b.Title));
-            
-      }
+    
 
     moviesWrapper.innerHTML = moviesArray.map(movie => getMovieHTML(movie)).join("");
     moviesWrapper.classList.remove('movies__loading');
-    searchButton.disabled = false;
     searchButton.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i>';
 }
 

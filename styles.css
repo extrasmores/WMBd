@@ -171,6 +171,8 @@ section {
   /* Added after tutorial to maintain image aspect ratio */
   object-fit: contain;
   object-position: left;
+  object-fit: contain;
+  object-position: left;
 }
 
 .movie__img--wrapper {
@@ -247,3 +249,23 @@ select {
       transform: rotate(360deg);
     }
   }
+
+
+  .input__wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .content__search--button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .content__search--button i {
+    margin-right: 24px;
+    color: #7342d6;
+  } 
+  
