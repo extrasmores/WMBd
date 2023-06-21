@@ -8,6 +8,7 @@ async function renderMovies(filter) {
   const query = searchInput.value;
 
   moviesWrapper.classList.add("movies__loading");
+  await timeout(1000);
 
   const movies = await fetch(
     `http://www.omdbapi.com/?apikey=1f280777&s=${query}`
@@ -21,19 +22,20 @@ async function renderMovies(filter) {
     moviesArray.sort((a, b) => a.Year - b.Year);
   }
 
-  setTimeout(() => {
     moviesWrapper.innerHTML = moviesArray
       .map((movie) => getMovieHTML(movie))
       .join("");
     moviesWrapper.classList.remove("movies__loading");
-  }, 1000);
 }
 
 function filterMovies(event) {
   renderMovies(event.target.value);
 }
 
-moviesWrapper.classList.remove("movies__loading");
+
+function timeout(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 function getMovieHTML(movie) {
   return `<div class="movie">
