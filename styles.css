@@ -187,6 +187,7 @@ section {
 }
 .movie__year {
   color: white;
+  font-size: 16px !important;
 }
 
 
