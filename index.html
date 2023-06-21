@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WMDb</title>
     <link rel="stylesheet" href="styles.css">
-    <script
-    src="https://kit.fontawesome.com/c8e4d183c2.js"
-    crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/93d52f917e.js" crossorigin="anonymous"></script>
     <script src="index.js" defer></script>
 </head>
 <body>
@@ -24,18 +22,26 @@
         </nav>
         <div class="content__wrapper">
             <h1 class="title">Browse our Movies</h1>
-            <div class="input__wrapper">
-                <input type="text" placeholder="Search by Title or Year">
-                <button class="content__search--button">
+            <form class="input__wrapper" onsubmit="renderMovies(event)">
+                <input id="searchInput" type="text" placeholder="Search by Title or Year">
+                <button class="content__search--button" onclick="renderMovies()">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-            </div>
+            </form>
         </section>
         <section id="movies">
             <div class="row">
                 <div class="container">
+                    <select class="filter__movies" id="filter" onchange="filterMovies(event)">
+                        <option value="" disabled selected>Sort</option>
+                        <option value="NEW_TO_OLD" >New to Old</option>
+                        <option value="OLD_TO_NEW" >Old to new</option>
+                        <option value="ALPHABETICALLY">Alphabetically</option>
+                    </select>
+                    <div class="movies movies__loading">
+                        <i class="fas fa-spinner movies__loading--spinner"></i>
                     <div class="movies">
-                        
+                          </div>
             </div>
 
         </section>

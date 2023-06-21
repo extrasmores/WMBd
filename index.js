@@ -1,20 +1,31 @@
 const moviesWrapper = document.querySelector('.movies');
 
 async function renderMovies(filter) {
-    const movies = await fetch(`http://www.omdbapi.com/?apikey=1f280777&s=${id}`)
+    event.preventDefault();
+    const searchInput = document.querySelector('#searchInput');
+    const query = searchInput.value;
+    const movies = await fetch(`http://www.omdbapi.com/?apikey=1f280777&s=${query}`)
     const moviesData = await movies.json();
     const moviesArray = moviesData.Search;
     console.log(moviesData)
 
     if (filter === "NEW_TO_OLD") {
-        moviesArray.sort((a, b) => (a.Year) - (b.Year));
+        moviesArray.sort((a, b) => (b.Year) - (a.Year));
       } else if (filter === "OLD_TO_NEW") {
-         moviesArray.sort((a, b) => (b.Year) - (a.Year));
+         moviesArray.sort((a, b) => (a.Year) - (b.Year));
+      }
+      else if (filter === "ALPHABETICALLY") {
+        moviesArray.sort((a, b) => (a.Title < b.Title));
+            
       }
 
     moviesWrapper.innerHTML = moviesArray.map(movie => getMovieHTML(movie)).join("");
 }
-console.log(renderMovies);
+
+function filterMovies(event) {
+    renderMovies(event.target.value);
+  }
+  
 
 renderMovies(filter);
 
@@ -26,7 +37,7 @@ function getMovieHTML(movie) {
          <figure class="movie__img--wrapper">
        <img
          class="movie__img"
-         src=".${movie.Poster}"
+         src="${movie.Poster}"
          alt=""
        />
         </figure>
@@ -36,10 +47,6 @@ function getMovieHTML(movie) {
      </div>`
 }
 
-
-function searchInput(event) {
-    id = event.target.value
-}
 
 
 // renderMovies();
