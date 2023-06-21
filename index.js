@@ -14,6 +14,7 @@ searchButton.disabled = true;
 
 async function renderMovies(filter) {
     event.preventDefault();
+    const searchButton = document.getElementById('searchButton');
     const searchInput = document.querySelector('#searchInput');
     const query = searchInput.value;
     moviesWrapper.classList.add('movies__loading');
