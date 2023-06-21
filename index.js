@@ -2,7 +2,7 @@ const moviesWrapper = document.querySelector(".movies");
 
 moviesWrapper.classList += " movies__loading";
 
-async function renderMovies(event) {
+async function renderMovies(filter) {
   event.preventDefault();
   const searchInput = document.querySelector("#searchInput");
   const query = searchInput.value;
@@ -19,8 +19,6 @@ async function renderMovies(event) {
     moviesArray.sort((a, b) => b.Year - a.Year);
   } else if (filter === "OLD_TO_NEW") {
     moviesArray.sort((a, b) => a.Year - b.Year);
-  } else if (filter === "ALPHABETICALLY") {
-    moviesArray.sort((a, b) => a.Title.localeCompare(b.Title));
   }
 
   setTimeout(() => {
