@@ -224,6 +224,10 @@ select {
   .fa-spinner {
     animation: rotate 600ms infinite linear;
   }
+
+  .movies__loading::before {
+    content: "";
+  }
   
   .movies__loading--spinner {
     display: none !important;

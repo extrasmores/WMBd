@@ -9,10 +9,14 @@ moviesWrapper.classList += ' movies__loading'
 // }
 // moviesWrapper.classList.remove('movies__loading')
 
+searchButton.disabled = true;
+  searchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
 async function renderMovies(filter) {
     event.preventDefault();
     const searchInput = document.querySelector('#searchInput');
     const query = searchInput.value;
+    moviesWrapper.classList.add('movies__loading');
     const movies = await fetch(`http://www.omdbapi.com/?apikey=1f280777&s=${query}`)
     const moviesData = await movies.json();
     const moviesArray = moviesData.Search;
@@ -28,6 +32,9 @@ async function renderMovies(filter) {
       }
 
     moviesWrapper.innerHTML = moviesArray.map(movie => getMovieHTML(movie)).join("");
+    moviesWrapper.classList.remove('movies__loading');
+    searchButton.disabled = false;
+    searchButton.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i>';
 }
 
 function filterMovies(event) {
@@ -39,6 +46,8 @@ function filterMovies(event) {
 setTimeout(() => {
     renderMovies();
   });
+
+moviesWrapper.classList.remove('movies__loading');
 
 
 
